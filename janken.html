@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/sample.css">
+  <title>ラーメン、つけ麺、ぼくブラフ麺！</title>
+</head>
+
+<body>
+  <!-- ここから記述しよう -->
+
+
+  <div class="top">
+    <h1>　ラーメン、つけ麺、</h1>
+    <h2>　ぼくブラフ麺！！</h2>
+    <h3>今日のラーメンどこにする！？</h3>
+  </div>
+
+
+  <div class="profile">
+    <header>
+      <img src="img/profile.jpg" alt="">
+    </header>
+  </div>
+
+  <body>
+    <header>
+      <h1>♥ロンちゃんへの訪麺日記♥</h1>
+    </header>
+
+    <main>
+      <input type="text" id="input">
+      <textarea id="text_area"></textarea>
+      <ul>
+        <li id="save">Save</li>
+        <li id="clear">Clear</li>
+      </ul>
+    </main>
+
+    <footer>
+      <small></small>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+      // 保存
+      $('#save').on('click', function () {
+        const data = {
+          title: $('#input').val(),
+          text: $('#text_area').val(),
+        };
+        console.log(data);
+        const jsonData = JSON.stringify(data);
+        console.log(jsonData);
+        localStorage.setItem('memo', jsonData);
+
+      });
+      // 削除
+      $('#clear').on('click', function () {
+        localStorage.removeItem('memo');
+        $('#text_area').val('');
+      });
+      // 取得
+      if (localStorage.getItem('memo')) {
+        const jsonData = localStorage.getItem('memo');
+        console.log(jsonData);
+        const data = JSON.parse(jsonData);
+        console.log(data);
+        $('#input').val(data.title);
+        $('#text_area').val(data.text);
+
+      }
+
+
+
+    </script>
+
+  </body>
+
+
+  <main class="ul">
+    <ul>
+      <li id="ramen"><img src="img/1.jpg" alt=""></li>
+      <li id="tsukemen"><img src="img/2.jpg" alt=""></li>
+      <li id="brafmen"><img src="img/3.jpg" alt=""></li>
+    </ul>
+    <div id="youtube"></div>
+    <div id="tenjin">天神のラーメン屋で迷ったら…</div>
+    <div id="result">♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥</div>
+    <div id="comment">好き好きロンちゃんオススメ麺</div>
+    <div id="map"></div>
+  </main>
+
+  <footer>
+    <div class="youtube">
+      <iframe width="1200" height="675" src="https://www.youtube.com/embed/swT-vt-_eAc" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+    <img src="img/top.jpg" alt="">
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+    //ここに処理を追加
+    $('#ramen').on('click', function () {
+      const min = 0;
+      const max = 2;
+      const randomnumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+      let view = "";
+
+      if (randomnumber === 0) {
+        view = '<<iframe width="1024" height="768" src="https://www.youtube.com/embed/l979G7pe7IA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>';
+      }
+      if (randomnumber === 1) {
+        view = '<<iframe width="1024" height="768" src="https://www.youtube.com/embed/IVcJl2Q9LS8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>';
+      }
+
+      if (randomnumber === 2) {
+        view = '<<iframe width="1024" height="768" src="https://www.youtube.com/embed/ExvwE3Eyjuk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>';
+      }
+      $('#youtube').html(view);
+
+      if (randomnumber === 0) {
+        $('#tenjin').text('博多くまちゃんらぁめん とんこつ研究所');
+
+      }
+      else if (randomnumber === 1) {
+        $('#tenjin').text('長浜屋台やまちゃん バンドマン打上げ御用達');
+
+      }
+      else if (randomnumber === 2) {
+        $('#tenjin').text('元祖トマトラーメンと辛麺 三味（333）');
+
+      }
+      if (randomnumber === 0) {
+        $('#comment').text('とっても普通な博多とんこつブラフ麺！');
+      }
+      else if (randomnumber === 1) {
+        $('#comment').text('呑んだ後の〆はあっさり長浜ブラフ麺！');
+      }
+      else if (randomnumber === 2) {
+        $('#comment').text('ジーズアカデミー福岡 徒歩1分ブラフ麺！');
+      }
+
+      if (randomnumber === 0) {
+        view = '<img src="img/1kumachan.jpg" width="1000">';
+      }
+      if (randomnumber === 1) {
+        view = '<img src="img/2yamachan.jpg" width="1000">';
+      }
+
+      if (randomnumber === 2) {
+        view = '<img src="img/3sanmi.jpg" width="1000">';
+      }
+      $('#result').html(view);
+
+      if (randomnumber === 0) {
+        view = '<<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3323.720491305389!2d130.39135856429243!3d33.58660574957324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x354191aa0929fbdf%3A0xd5e535b27b5236c6!2z44CSODEwLTAwNDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yT4oiS77yU77yRIOODl-ODquOCquWkp-WQjeODk-ODqyAxRiDjgrjjg7zjgrrjgqLjgqvjg4fjg5_jg7w!3m2!1d33.586664299999995!2d130.394469!4m5!1s0x354193f045c0a023%3A0xec7ef0a4d33a9c7f!2z5Y2a5aSa44GP44G-44Gh44KD44KTIOOCieOBgeOCgeOCkyDlpKflkI3mnKzlupfjgIHjgJI4MTAtMDA0MSDnpo_lsqHnnIznpo_lsqHluILkuK3lpK7ljLrlpKflkI3vvJHkuIHnm67vvJjiiJLvvJQg44Ko44Kv44K344O844OJ5aSn5ZCNIDFG!3m2!1d33.5864707!2d130.3926255!5e0!3m2!1sja!2sjp!4v1636442419644!5m2!1sja!2sjp" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>>';
+      }
+      if (randomnumber === 1) {
+        view = '<<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6647.171233651835!2d130.39010597228224!3d33.590106810262654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x354191aa0929fbdf%3A0xd5e535b27b5236c6!2z44CSODEwLTAwNDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yT4oiS77yU77yRIOODl-ODquOCquWkp-WQjeODk-ODqyAxRiDjgrjjg7zjgrrjgqLjgqvjg4fjg5_jg7w!3m2!1d33.586664299999995!2d130.394469!4m5!1s0x3541918905d8a515%3A0xe335c61582362c16!2z56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy66Iie6ba077yR5LiB55uu77yUIOiInum2tOOCs-ODvOODneODqeOCuSDplbfmtZzlsYvlj7Ag44KE44G-44Gh44KD44KTIOemj-WyoeWkqeelnuW6lw!3m2!1d33.5933328!2d130.393369!5e0!3m2!1sja!2sjp!4v1636442689958!5m2!1sja!2sjp" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>>';
+      }
+
+      if (randomnumber === 2) {
+        view = '<<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3323.7065751247715!2d130.3926427642926!3d33.586966999554434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x354191aa0929fbdf%3A0xd5e535b27b5236c6!2z44CSODEwLTAwNDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yT4oiS77yU77yRIOODl-ODquOCquWkp-WQjeODk-ODqyAxRiDjgrjjg7zjgrrjgqLjgqvjg4fjg5_jg7w!3m2!1d33.586664299999995!2d130.394469!4m5!1s0x3541918685fb9bef%3A0x3ae97e1e35db21f7!2z56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yR77yR4oiS77yS77yXIOS4ieWRsygzMzMpIOemj-WyoeWkqeelnuWkp-WQjeW6lw!3m2!1d33.5872472!2d130.3950471!5e0!3m2!1sja!2sjp!4v1636442611041!5m2!1sja!2sjp" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>>';
+      }
+      $('#map').html(view);
+
+    });
+
+
+
+    $('#tsukemen').on('click', function () {
+      const min = 0;
+      const max = 2;
+      const randomnumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+      if (randomnumber === 0) {
+        view = '<<iframe width="1024" height="768" src="https://www.youtube.com/embed/1e7H_v2krh8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>';
+      }
+      if (randomnumber === 1) {
+        view = '<<iframe width="1024" height="768" src="https://www.youtube.com/embed/_wZDz_UUo4Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>';
+      }
+
+      if (randomnumber === 2) {
+        view = '<<iframe width="1024" height="768" src="https://www.youtube.com/embed/YgktzzFe4bA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>';
+      }
+      $('#youtube').html(view);
+
+      if (randomnumber === 0) {
+        $('#tenjin').text('麺や兼虎 天神本店 つけ麺＆油そば');
+      }
+      else if (randomnumber === 1) {
+        $('#tenjin').text('フジヤマ55（つけ麺 まぜ麺 二郎系）');
+      }
+      else if (randomnumber === 2) {
+        $('#tenjin').text('つけ麺Tetsuji もつ＆魚介スープ');
+      }
+      if (randomnumber === 0) {
+        $('#comment').text('辛辛魚で有名な行列覚悟の激辛ブラフ麺！');
+      }
+      else if (randomnumber === 1) {
+        $('#comment').text('スープ用ホットプレート常備ブラフ麺！');
+      }
+      else if (randomnumber === 2) {
+        $('#comment').text('御鮨屋からのスピンオフ極上ブラフ麺！');
+      }
+      if (randomnumber === 0) {
+        view = '<img src="img/4kanetora.jpg" width="1000">';
+      }
+      if (randomnumber === 1) {
+        view = '<img src="img/5fujiyama.jpg" width="1000">';
+      }
+
+      if (randomnumber === 2) {
+        view = '<img src="img/6tetsuji.jpg" width="1000">';
+      }
+      $('#result').html(view);
+
+      if (randomnumber === 0) {
+        view = '<<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3323.712783009626!2d130.39563391429246!3d33.58680584956281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x354191aa0929fbdf%3A0xd5e535b27b5236c6!2z44CSODEwLTAwNDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yT4oiS77yU77yRIOODl-ODquOCquWkp-WQjeODk-ODqyAxRiDjgrjjg7zjgrrjgqLjgqvjg4fjg5_jg7w!3m2!1d33.586664299999995!2d130.394469!4m5!1s0x35419180a445b00f%3A0x166bb995858617e4!2z56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65rih6L666YCa77yU5LiB55uu77yZIOemj-mFkuODk-ODqyAxRiDpurrjgoTlhbzomY4g5aSp56We5pys5bqX!3m2!1d33.5872028!2d130.40120339999999!5e0!3m2!1sja!2sjp!4v1636442851518!5m2!1sja!2sjp" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>>';
+      }
+      if (randomnumber === 1) {
+        view = '<<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1661.86413483481!2d130.3948476079341!3d33.58640382960644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x354191aa0929fbdf%3A0xd5e535b27b5236c6!2z44CSODEwLTAwNDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yT4oiS77yU77yRIOODl-ODquOCquWkp-WQjeODk-ODqyAxRiDjgrjjg7zjgrrjgqLjgqvjg4fjg5_jg7w!3m2!1d33.586664299999995!2d130.394469!4m5!1s0x354191590656dca3%3A0x5d25f5e8a924b934!2z56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65LuK5rOJ77yR5LiB55uu77yR77yZ4oiS77yR77ySIOODleOCuOODpOODnjU1IOemj-WyoeWkqeelnuW6lw!3m2!1d33.5859878!2d130.3971689!5e0!3m2!1sja!2sjp!4v1636442905171!5m2!1sja!2sjp" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>>';
+      }
+
+      if (randomnumber === 2) {
+        view = '<<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d13295.69018541084!2d130.3899239693474!3d33.58136021829984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x354191aa0929fbdf%3A0xd5e535b27b5236c6!2z44CSODEwLTAwNDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yT4oiS77yU77yRIOODl-ODquOCquWkp-WQjeODk-ODqyAxRiDjgrjjg7zjgrrjgqLjgqvjg4fjg5_jg7w!3m2!1d33.586664299999995!2d130.394469!4m5!1s0x35419177b09bffff%3A0xa6b1b5ca913525f4!2z56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65bmz5bC-77yR5LiB55uu77yZIOaghOeUsOODk-ODqyDjgaTjgZHpurogVGV0c3VqaSAo44Gm44Gk44GYKQ!3m2!1d33.5758994!2d130.4026365!5e0!3m2!1sja!2sjp!4v1636442959865!5m2!1sja!2sjp" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>>';
+      }
+      $('#map').html(view);
+
+    });
+
+
+    $('#brafmen').on('click', function () {
+      const min = 0;
+      const max = 2;
+      const randomnumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+      if (randomnumber === 0) {
+        view = '<<iframe width="1024" height="768" src="https://www.youtube.com/embed/LBiIrtWkZ2w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>';
+      }
+      if (randomnumber === 1) {
+        view = '<<iframe width="1024" height="768" src="https://www.youtube.com/embed/bm717zgM1cc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>';
+      }
+
+      if (randomnumber === 2) {
+        view = '<<iframe width="1024" height="768" src="https://www.youtube.com/embed/kx1CaMuy8SM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>';
+      }
+      $('#youtube').html(view);
+
+      if (randomnumber === 0) {
+        $('#tenjin').text('大宰府 八ちゃんラーメン');
+      }
+      else if (randomnumber === 1) {
+        $('#tenjin').text('パニックラーメン 仮面55（パハパハ）');
+      }
+      else if (randomnumber === 2) {
+        $('#tenjin').text('博多元気一杯 青いバケツが営業中の目印');
+      }
+      if (randomnumber === 0) {
+        $('#comment').text('油ギトギト胃もたれブラフ麺！');
+      }
+      else if (randomnumber === 1) {
+        $('#comment').text('エスニックな唐辛子たっぷりブラフ麺！');
+      }
+      else if (randomnumber === 2) {
+        $('#comment').text('麺を最初に食べると強制退店ブラフ麺！');
+      }
+
+
+      if (randomnumber === 0) {
+        view = '<img src="img/7hattyan.jpg" width="1000">';
+      }
+      if (randomnumber === 1) {
+        view = '<img src="img/8papapa.jpg" width="1000">';
+      }
+
+      if (randomnumber === 2) {
+        view = '<img src="img/9genki.jpg" width="1000">';
+      }
+      $('#result').html(view);
+
+      if (randomnumber === 0) {
+        view = '<<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6647.582493182508!2d130.39395032228157!3d33.58476896082154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x354191aa0929fbdf%3A0xd5e535b27b5236c6!2z44CSODEwLTAwNDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yT4oiS77yU77yRIOODl-ODquOCquWkp-WQjeODk-ODqyAxRiDjgrjjg7zjgrrjgqLjgqvjg4fjg5_jg7w!3m2!1d33.586664299999995!2d130.394469!4m5!1s0x3541919c79a70c5b%3A0xe1b87aad22150cb5!2z56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy655m96YeR77yR5LiB55uu77yRIOWFq-OBoeOCg-OCk-ODqeODvOODoeODsw!3m2!1d33.5815722!2d130.4036762!5e0!3m2!1sja!2sjp!4v1636443021376!5m2!1sja!2sjp" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>>';
+      }
+      if (randomnumber === 1) {
+        view = '<<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3323.7985523693333!2d130.3924531642924!3d33.58457929967872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x354191aa0929fbdf%3A0xd5e535b27b5236c6!2z44CSODEwLTAwNDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yT4oiS77yU77yRIOODl-ODquOCquWkp-WQjeODk-ODqyAxRiDjgrjjg7zjgrrjgqLjgqvjg4fjg5_jg7w!3m2!1d33.586664299999995!2d130.394469!4m5!1s0x354191819064b905%3A0xc4b69daa055f0fe1!2z56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy66Jas6Zmi77yS5LiB55uu77yR77yT4oiS77yT77yQIOODqeODvOODoeODs-S7rumdou-8le-8lQ!3m2!1d33.5822386!2d130.3947794!5e0!3m2!1sja!2sjp!4v1636443087017!5m2!1sja!2sjp" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>>';
+      }
+
+      if (randomnumber === 2) {
+        view = '<<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d13293.77874728591!2d130.39251031935382!3d33.59376471567368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x354191aa0929fbdf%3A0xd5e535b27b5236c6!2z44CSODEwLTAwNDEg56aP5bKh55yM56aP5bKh5biC5Lit5aSu5Yy65aSn5ZCN77yR5LiB55uu77yT4oiS77yU77yRIOODl-ODquOCquWkp-WQjeODk-ODqyAxRiDjgrjjg7zjgrrjgqLjgqvjg4fjg5_jg7w!3m2!1d33.586664299999995!2d130.394469!4m5!1s0x354191e919a70f47%3A0x3f53894992ad4065!2zR2Vua2kgSXBwYWksIO-8lOS4geebri3vvJPvvJEg5LiL5ZGJ5pyN55S6IOWNmuWkmuWMuiDnpo_lsqHluIIg56aP5bKh55yM!3m2!1d33.6008674!2d130.4072838!5e0!3m2!1sja!2sjp!4v1636443133858!5m2!1sja!2sjp" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>>';
+      }
+      $('#map').html(view);
+
+    });
+  </script>
+
+</body>
+
+</html>
